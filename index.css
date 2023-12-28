@@ -83,6 +83,25 @@ body {
 	background-color: white;
 }
 
+.liked-style {
+    color: red;
+}
+
+#endorsement-list div div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+
+#endorsement-list button {
+    border: none;
+    background-color: white;
+
+}
+
 #endorsement {
 	margin: 5px 0;
 }
