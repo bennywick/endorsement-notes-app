@@ -5,6 +5,8 @@ import {
 	push,
 	onValue,
 	update,
+    remove,
+    set,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 // Google Real-time Database initialization
@@ -41,50 +43,55 @@ onValue(endorsementListInDB, (snapshot) => {
 		endorsementList.innerHTML = "";
 
 		for (let i = itemArray.length - 1; i >= 0; i--) {
-			const currentItem = itemArray[i];
-			const endorsementId = currentItem[0];
-			const text = currentItem[1].text;
-			const from = currentItem[1].from;
-			const to = currentItem[1].to;
-			let numberOfLikes = currentItem[1].likes;
-			let hasLiked = localStorage.getItem(`${endorsementId}`);
-
-			const endorsementItemDiv = document.createElement("div");
-			const fromAndLikeContainer = document.createElement("div");
-			const toText = document.createElement("p");
-			const textBody = document.createElement("p");
-			const fromText = document.createElement("p");
-			const likeBtn = document.createElement("button");
-
-			toText.textContent = `To ${to}`
-			toText.id = "to";
-			textBody.textContent = text;
-			textBody.id = "endorsement";
-			fromText.textContent = `From ${from}`;
-			fromText.id = "from";
-			likeBtn.textContent = `♥ ${numberOfLikes}`;
-
-			endorsementList.append(endorsementItemDiv);
-			endorsementItemDiv.appendChild(toText);
-			endorsementItemDiv.appendChild(textBody);
-			endorsementItemDiv.appendChild(fromAndLikeContainer);
-			fromAndLikeContainer.appendChild(fromText);
-			fromAndLikeContainer.appendChild(likeBtn);
-
-			if (hasLiked === 'true') {
-                likeBtn.className = 'liked-style'
-			} else {
-				likeBtn.addEventListener("click", () => {
-					let exactLocationOfItemInDB = ref(
-						database,
-						`endorsementList/${endorsementId}`
-					);
-					localStorage.setItem(`${endorsementId}`, JSON.stringify(true));
-					update(exactLocationOfItemInDB, { likes: numberOfLikes++ });
-				});
-			}
+            const currentItem = itemArray[i];
+            appendItemToList(currentItem)
 		}
 	} else {
         console.log('nothing yet')
     }
 });
+
+function appendItemToList(item){
+    const endorsementId = item[0];
+    const text = item[1].text;
+    const from = item[1].from;
+    const to = item[1].to;
+    let numberOfLikes = item[1].likes;
+    let hasLiked = localStorage.getItem(`${endorsementId}`);
+
+    const endorsementItemDiv = document.createElement("div");
+    const fromAndLikeContainer = document.createElement("div");
+    const toText = document.createElement("p");
+    const textBody = document.createElement("p");
+    const fromText = document.createElement("p");
+    const likeBtn = document.createElement("button");
+
+    toText.textContent = `To ${to}`
+    toText.id = "to";
+    textBody.textContent = text;
+    textBody.id = "endorsement";
+    fromText.textContent = `From ${from}`;
+    fromText.id = "from";
+    likeBtn.textContent = `♥ ${numberOfLikes}`;
+    likeBtn.className = 'like-btn'
+
+    if (hasLiked === 'true') {
+        likeBtn.className = 'liked-style'
+    } else {
+        likeBtn.addEventListener("click", async function () {
+            let exactLocationOfItemInDB = ref(
+                database,
+                `endorsementList/${endorsementId}`
+            );
+            localStorage.setItem(`${endorsementId}`, JSON.stringify(true));
+            await update(exactLocationOfItemInDB, { likes: numberOfLikes + 1});
+        });
+    }
+
+    endorsementList.append(endorsementItemDiv);
+    endorsementItemDiv.appendChild(toText);
+    endorsementItemDiv.appendChild(textBody);
+    endorsementItemDiv.appendChild(fromAndLikeContainer);
+    fromAndLikeContainer.appendChild(fromText);
+    fromAndLikeContainer.appendChild(likeBtn);
+}

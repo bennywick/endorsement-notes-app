@@ -56,6 +56,7 @@ body {
 }
 
 .endorsement-container button {
+    cursor: pointer;
 	border: 0 solid black;
 	border-radius: 8px;
 	height: 60px;
@@ -87,6 +88,14 @@ body {
     color: red;
 }
 
+.like-btn {
+    cursor: pointer;
+}
+
+.like-btn:hover {
+    font-size: larger;
+}
+
 #endorsement-list div div {
     display: flex;
     flex-direction: row;
@@ -97,7 +106,6 @@ body {
 }
 
 #endorsement-list button {
-    border: none;
     background-color: white;
 
 }
