@@ -16,8 +16,8 @@ body {
 
 .logo-container img {
 	flex-shrink: 0;
-	width: 90px;
-	height: 90px;
+	width: 120px;
+	height: 120px;
 }
 
 .logo-container h1 {
@@ -63,6 +63,7 @@ body {
 	width: 100%;
 	font-weight: bold;
 	background: #28a9f1;
+    color: black;
 }
 
 .endorsments-list-container {
@@ -85,7 +86,7 @@ body {
 }
 
 .liked-style {
-    color: red;
+    color: red !important;
 }
 
 .like-btn {
@@ -108,6 +109,7 @@ body {
 #endorsement-list button {
     border: none;
     background-color: white;
+    color: black;
 }
 
 #endorsement {

@@ -31,9 +31,7 @@ publishBtn.addEventListener("click", () => {
 		likes: 0,
 	};
 	push(endorsementListInDB, endorsement);
-    endorsementText.value = "";
-	fromInput.value = "";
-	toInput.value = "";
+	clearInputValues();
 });
 
 onValue(endorsementListInDB, (snapshot) => {
@@ -42,17 +40,30 @@ onValue(endorsementListInDB, (snapshot) => {
 	if (snapshot.exists()) {
 		let itemArray = Object.entries(snapshot.val());
 
-		// Clear the list
-		endorsementList.innerHTML = "";
+		clearList();
 
 		for (let i = itemArray.length - 1; i >= 0; i--) {
 			const currentItem = itemArray[i];
 			appendItemToList(currentItem);
 		}
 	} else {
+        endorsementList.innerHTML = `
+        <img src="assets/ghost.png" height="200px">
+        <p>Nothing here yet...</p>
+        `
 		console.log("nothing yet");
 	}
 });
+
+function clearList() {
+	endorsementList.innerHTML = "";
+}
+
+function clearInputValues() {
+	endorsementText.value = "";
+	fromInput.value = "";
+	toInput.value = "";
+}
 
 function appendItemToList(item) {
 	const endorsementId = item[0];
@@ -88,6 +99,7 @@ function appendItemToList(item) {
 			);
 			localStorage.setItem(`${endorsementId}`, JSON.stringify(true));
 			await update(exactLocationOfItemInDB, { likes: numberOfLikes + 1 });
+            vibrate()
 		});
 	}
 
