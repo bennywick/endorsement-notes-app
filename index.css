@@ -1,0 +1,95 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background: #1b1924;
+}
+
+.logo-container {
+	margin: 50px 10px 10px 10px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.logo-container img {
+	flex-shrink: 0;
+	width: 90px;
+	height: 90px;
+}
+
+.logo-container h1 {
+	margin-bottom: 0;
+}
+
+.endorsement-container {
+	margin: 20px 30px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+}
+
+.endorsement-container textarea {
+	box-sizing: border-box;
+	border: none;
+	border-radius: 8px;
+	height: 90px;
+	width: 100%;
+	color: #8f8f8f;
+	background: #444059;
+	padding: 10px;
+}
+
+#from-input,
+#to-input {
+	box-sizing: border-box;
+	text-align: center;
+	border: none;
+	border-radius: 8px;
+	color: #8f8f8f;
+	background: #444059;
+	height: 30px;
+	width: calc(50% - 3px);
+}
+
+.endorsement-container button {
+	border: 0 solid black;
+	border-radius: 8px;
+	height: 60px;
+	width: 100%;
+	font-weight: bold;
+	background: #28a9f1;
+}
+
+.endorsments-list-container {
+	padding: 10px;
+	text-align: center;
+	color: white;
+}
+
+.endorsments-list-container h2 {
+	margin-top: 0;
+}
+
+#endorsement-list div {
+	box-sizing: border-box;
+	margin: 20px;
+	padding: 10px;
+	text-align: left;
+	color: black;
+	background-color: white;
+}
+
+#endorsement {
+	margin: 5px 0;
+}
+
+#from,
+#to {
+	margin: 0;
+	font-weight: bold;
+	font-size: 14px;
+}
