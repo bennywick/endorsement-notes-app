@@ -99,7 +99,7 @@ function appendItemToList(item) {
 			);
 			localStorage.setItem(`${endorsementId}`, JSON.stringify(true));
 			await update(exactLocationOfItemInDB, { likes: numberOfLikes + 1 });
-            vibrate()
+            Navigator.vibrate(100)
 		});
 	}
 
