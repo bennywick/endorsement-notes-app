@@ -47,11 +47,10 @@ onValue(endorsementListInDB, (snapshot) => {
 			appendItemToList(currentItem);
 		}
 	} else {
-        endorsementList.innerHTML = `
-        <img src="assets/ghost.png" height="200px">
-        <p>Nothing here yet...</p>
-        `
-		console.log("nothing yet");
+		endorsementList.innerHTML = `
+            <img src="assets/ghost.png" height="200px">
+            <p>Nothing here yet...</p>
+            `;
 	}
 });
 
@@ -92,14 +91,13 @@ function appendItemToList(item) {
 	if (hasLiked === "true") {
 		likeBtn.className = "liked-style";
 	} else {
-		likeBtn.addEventListener("click", async function () {
+		likeBtn.addEventListener("click", function () {
 			let exactLocationOfItemInDB = ref(
 				database,
 				`endorsementList/${endorsementId}`
 			);
 			localStorage.setItem(`${endorsementId}`, JSON.stringify(true));
-			await update(exactLocationOfItemInDB, { likes: numberOfLikes + 1 });
-            Navigator.vibrate(100)
+			update(exactLocationOfItemInDB, { likes: numberOfLikes + 1 });
 		});
 	}
 
