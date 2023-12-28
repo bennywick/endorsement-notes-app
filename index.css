@@ -106,8 +106,8 @@ body {
 }
 
 #endorsement-list button {
+    border: none;
     background-color: white;
-
 }
 
 #endorsement {
